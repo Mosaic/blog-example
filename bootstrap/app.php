@@ -9,9 +9,6 @@ $app = new Mosaic\Cement\Application(
 );
 
 $app->components(
-    Mosaic\Exceptions\Component::whoops()->formatters(
-        new Whoops\Handler\PrettyPageHandler
-    ),
     Mosaic\Http\Component::diactoros(),
     Mosaic\Routing\Component::fastRoute()->binders(
         new App\Http\Routes\HomeRoute,
@@ -23,6 +20,10 @@ $app->components(
     ),
     Mosaic\View\Component::twig($app->getFolderStructure())
 );
+
+$app->component(Mosaic\Exceptions\Component::whoops()->formatters(
+    new App\Exceptions\ViewPageExceptionHandler($app->getContainer()->get(Mosaic\View\Factory::class))
+));
 
 $app->provide(new App\Providers\MarkdownProvider);
 $app->provide(new App\Providers\RepositoryProvider);
