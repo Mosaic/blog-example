@@ -2,10 +2,11 @@
 
 namespace App\Http\Routes;
 
+use App\Http\Controllers\ArticleController;
 use Mosaic\Routing\RouteBinder;
 use Mosaic\Routing\Router;
 
-class HomeRoute implements RouteBinder
+class ArticleRoute implements RouteBinder
 {
 
     /**
@@ -15,6 +16,8 @@ class HomeRoute implements RouteBinder
      */
     public function bind(Router $router)
     {
-        $router->get('/', 'App\Http\Controllers\HomeController@index');
+        $router->get('{slug}', [
+            'uses' => ArticleController::class . '@show'
+        ]);
     }
 }

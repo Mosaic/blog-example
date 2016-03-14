@@ -1,0 +1,32 @@
+{% extends "layouts/master.twig" %}
+{% block header %}
+    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Mosaic Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">An example blog built with Mosaic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+
+    {% for article in articles %}
+        <div class="post-preview">
+            <a href="/{{ article.slug }}">
+                <h2 class="post-title">
+                    {{ article.title }}
+                </h2>
+            </a>
+            <p class="post-meta">Posted by <a href="#">{{ article.author }}</a> on {{ article.publishedAt }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

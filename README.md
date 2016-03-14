@@ -1,1 +1,1 @@
-# Mosaic app skeleton
+# Mosaic Blog Example
