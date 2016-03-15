@@ -55,10 +55,8 @@ $app->component(Mosaic\Routing\Component::fastRoute()->binders(
 |--------------------------------------------------------------------------
 */
 
-$app->component(Mosaic\Filesystem\Component::flystem($app->getFolderStructure())->local(
-    'blog',
-    $app->getFolderStructure()->storagePath() . '/blog'
-));
+$app->component(Mosaic\Filesystem\Component::flystem($app->getFolderStructure())
+    ->local('blog', $app->getFolderStructure()->storagePath() . '/blog'));
 
 /*
 |--------------------------------------------------------------------------
@@ -70,11 +68,11 @@ $app->component(
     Mosaic\View\Component::twig($app->getFolderStructure())
 );
 
-/**
- * |--------------------------------------------------------------------------
- * | Providers
- * |--------------------------------------------------------------------------
- */
+/*
+|--------------------------------------------------------------------------
+| View component
+|--------------------------------------------------------------------------
+*/
 
 $app->provide(new App\Providers\MarkdownProvider);
 $app->provide(new App\Providers\RepositoryProvider);
